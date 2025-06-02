@@ -26,11 +26,21 @@ const persons = [
   },
 ];
 
-app.get("/", (requesst, response) => {
+app.get("/", (request, response) => {
   response.send("<h1>Phonebook backend api</h1>");
 });
 
-app.get("/api/persons", (requesst, response) => {
+app.get("/info", (request, response) => {
+  const requestTime = new Date();
+  const personsTotal = persons.length;
+  const info = `<div>
+    <p>Phonebook has info for ${personsTotal} people</p>
+    <p>${requestTime}</p>
+  </div>`;
+  response.send(info);
+});
+
+app.get("/api/persons", (request, response) => {
   response.json(persons);
 });
 
