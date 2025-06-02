@@ -2,6 +2,9 @@
 
 const express = require("express");
 const app = express();
+app.use(express.json());
+
+const helpers = require("./utils/helpers");
 
 let persons = [
   {
@@ -61,13 +64,40 @@ app.get("/api/persons/:id", (request, response) => {
   }
 });
 
-// delete
+// delete /api/persons/:id
 app.delete("/api/persons/:id", (request, response) => {
   const id = request.params.id;
   persons = persons.filter((p) => p?.id !== id);
 
   console.log(persons);
   response.status(204).end();
+});
+
+// post /api/persons
+app.post("/api/persons", (request, response) => {
+  const body = request.body;
+
+  if (!body.name) {
+    return response.status(400).json({
+      error: "name missing",
+    });
+  }
+
+  if (!body.number) {
+    return response.status(400).json({
+      error: "number missing",
+    });
+  }
+
+  const person = {
+    id: helpers.generateId(persons),
+    name: body.name,
+    number: body.number,
+  };
+
+  console.log(person);
+  persons = persons.concat(person);
+  response.json(person);
 });
 
 const PORT = 3001;
