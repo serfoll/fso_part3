@@ -26,10 +26,12 @@ const persons = [
   },
 ];
 
+// Entrypoint
 app.get("/", (request, response) => {
   response.send("<h1>Phonebook backend api</h1>");
 });
 
+// /info
 app.get("/info", (request, response) => {
   const requestTime = new Date();
   const personsTotal = persons.length;
@@ -40,8 +42,23 @@ app.get("/info", (request, response) => {
   response.send(info);
 });
 
+// /api/persons
 app.get("/api/persons", (request, response) => {
   response.json(persons);
+});
+
+// /api/persons/:id
+app.get("/api/persons/:id", (request, response) => {
+  const id = request.params.id;
+  const person = persons.find((p) => p?.id === id);
+
+  if (person) {
+    console.log(person);
+    response.json(person);
+  } else {
+    response.statusMessage = `No person with id`;
+    response.status(404).end();
+  }
 });
 
 const PORT = 3001;

@@ -2,5 +2,13 @@
 GET http://localhost:3001
 
 ###
-# Get all persons
+# All persons
 GET http://localhost:3001/api/persons
+
+###
+# Phonebook info
+GET http://localhost:3001/info
+
+###
+# Single person
+GET http://localhost:3001/api/persons/2
