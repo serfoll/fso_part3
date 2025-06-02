@@ -3,7 +3,7 @@
 const express = require("express");
 const app = express();
 
-const persons = [
+let persons = [
   {
     id: "1",
     name: "Arto Hellas",
@@ -26,12 +26,12 @@ const persons = [
   },
 ];
 
-// Entrypoint
+// get /
 app.get("/", (request, response) => {
   response.send("<h1>Phonebook backend api</h1>");
 });
 
-// /info
+// get /info
 app.get("/info", (request, response) => {
   const requestTime = new Date();
   const personsTotal = persons.length;
@@ -42,12 +42,12 @@ app.get("/info", (request, response) => {
   response.send(info);
 });
 
-// /api/persons
+// get /api/persons
 app.get("/api/persons", (request, response) => {
   response.json(persons);
 });
 
-// /api/persons/:id
+// get /api/persons/:id
 app.get("/api/persons/:id", (request, response) => {
   const id = request.params.id;
   const person = persons.find((p) => p?.id === id);
@@ -59,6 +59,15 @@ app.get("/api/persons/:id", (request, response) => {
     response.statusMessage = `No person with id`;
     response.status(404).end();
   }
+});
+
+// delete
+app.delete("/api/persons/:id", (request, response) => {
+  const id = request.params.id;
+  persons = persons.filter((p) => p?.id !== id);
+
+  console.log(persons);
+  response.status(204).end();
 });
 
 const PORT = 3001;
