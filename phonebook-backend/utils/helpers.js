@@ -1,9 +1,13 @@
 /** @format */
 
 const generateId = (arr) => {
-  const maxId = arr.length > 0 ? Math.max(...arr.map((a) => Number(a?.id))) : 0;
+  const currIds = arr.map((item) => item.id);
+  let newId;
+  do {
+    newId = Date.now().toString(36) + Math.random().toString(36);
+  } while (currIds.includes(newId));
 
-  return String(maxId === 0 ? 0 : maxId + 1);
+  return newId;
 };
 
 module.exports = { generateId };
