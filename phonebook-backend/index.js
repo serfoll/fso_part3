@@ -1,9 +1,11 @@
 /** @format */
 
 const express = require("express");
-const app = express();
 const morgan = require("morgan");
+const cors = require("cors");
+const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 morgan.token("reqData", function (req, res) {
@@ -82,8 +84,6 @@ app.get("/api/persons/:id", (request, response) => {
 app.delete("/api/persons/:id", (request, response) => {
   const id = request.params.id;
   persons = persons.filter((p) => p?.id !== id);
-
-  console.log(persons);
   response.status(204).end();
 });
 
@@ -123,7 +123,7 @@ app.post("/api/persons", (request, response) => {
   response.json(person);
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(
     `App is running on port: ${PORT}, with url: http://localhost:${PORT}`
