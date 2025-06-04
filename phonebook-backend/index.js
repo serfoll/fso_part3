@@ -5,7 +5,19 @@ const app = express();
 const morgan = require("morgan");
 
 app.use(express.json());
-app.use(morgan("tiny"));
+
+morgan.token("reqData", function (req, res) {
+  if (req.method === "POST") {
+    return JSON.stringify(req.body);
+  }
+  return " ";
+});
+
+app.use(
+  morgan(
+    ":method :url :status :res[content-length] - :response-time ms :reqData"
+  )
+);
 
 const helpers = require("./utils/helpers");
 
@@ -59,7 +71,6 @@ app.get("/api/persons/:id", (request, response) => {
   const person = persons.find((p) => p?.id === id);
 
   if (person) {
-    console.log(person);
     response.json(person);
   } else {
     response.statusMessage = `No person with id`;
@@ -108,7 +119,6 @@ app.post("/api/persons", (request, response) => {
     number,
   };
 
-  console.log(person);
   persons = persons.concat(person);
   response.json(person);
 });
