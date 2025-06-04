@@ -125,7 +125,5 @@ app.post("/api/persons", (request, response) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(
-    `App is running on port: ${PORT}, with url: http://localhost:${PORT}`
-  );
+  console.log(`App is running on port: ${PORT}`);
 });
