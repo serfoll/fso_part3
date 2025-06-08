@@ -12,7 +12,7 @@ git clone https://github.com/serfoll/fso_part3.git
 ```
 ### 2. Navigate into the Project Directory
 ```bash
-cd fso_part3
+cd fso_part3/phonebook-backend
 ```
 ### 3. Install Dependencies
 Make sure you have Node.js and npm installed. Then run:
