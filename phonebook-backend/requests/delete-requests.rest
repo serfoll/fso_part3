@@ -1,2 +1,2 @@
 # single person
-DELETE http://localhost:3001/api/persons/10 HTTP/1.1
+DELETE http://localhost:3001/api/persons/<id> HTTP/1.1
