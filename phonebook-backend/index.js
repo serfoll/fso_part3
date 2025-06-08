@@ -53,13 +53,6 @@ app.get("/api/persons", (request, response) => {
 // get /api/persons/:id
 app.get("/api/persons/:id", (request, response, next) => {
   const { id } = request.params;
-  const isValidId = helpers.isValidObjectId(id);
-
-  if (!isValidId) {
-    return response.status(400).json({
-      error: "malformatted id",
-    });
-  }
 
   Person.findById(id)
     .then((person) => {
@@ -75,13 +68,6 @@ app.get("/api/persons/:id", (request, response, next) => {
 // delete /api/persons/:id
 app.delete("/api/persons/:id", (request, response, next) => {
   const { id } = request.params;
-  const isValidId = helpers.isValidObjectId(id);
-
-  if (!isValidId) {
-    return response.status(400).json({
-      error: "malformatted id",
-    });
-  }
 
   Person.findByIdAndDelete(id)
     .then((result) => {
@@ -130,14 +116,6 @@ app.post("/api/persons", (request, response, next) => {
 // put /api/persons/:id
 app.put("/api/persons/:id", (request, response, next) => {
   const { id } = request.params;
-  const isValidId = helpers.isValidObjectId(id);
-
-  if (!isValidId) {
-    return response.status(400).json({
-      error: "malformatted id",
-    });
-  }
-
   const { name, number } = request.body;
 
   Person.findById(id)

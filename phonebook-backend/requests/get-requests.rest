@@ -11,4 +11,4 @@ GET http://localhost:3001/info
 
 ###
 # Single person
-GET http://localhost:3001/api/persons/684572cfe6287499e057e59c
+GET http://localhost:3001/api/persons/<id>
