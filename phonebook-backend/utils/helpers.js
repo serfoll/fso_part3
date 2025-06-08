@@ -1,13 +1,11 @@
 /** @format */
 
-const generateId = (arr) => {
-  const currIds = arr.map((item) => item.id);
-  let newId;
-  do {
-    newId = Date.now().toString(36) + Math.random().toString(36);
-  } while (currIds.includes(newId));
+const mongoose = require("mongoose");
+const {
+  Types: { ObjectId },
+} = mongoose;
 
-  return newId;
-};
+const isValidObjectId = (id) =>
+  ObjectId.isValid(id) && new ObjectId(id).toString() === id;
 
-module.exports = { generateId };
+module.exports = { isValidObjectId };
