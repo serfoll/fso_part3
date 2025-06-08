@@ -14,8 +14,27 @@ mongoose
   .catch((error) => console.error("connection to db failed", error.message));
 
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
+  name: {
+    minLength: 3,
+    required: true,
+    type: String,
+  },
+  number: {
+    required: true,
+    type: String,
+    validate: {
+      validator: function (v) {
+        return /\d{3}-\d{3}-\d{4}/.test(v);
+      },
+      message: (props) => {
+        const msg = `Path (${props.path}) (${props.value})`;
+
+        return props.value.split("-").join("").length < 8
+          ? `${msg} is shorter than the minimum allowed length (8).`
+          : `${msg} is not a valid number, must be format (111-111-1111)`;
+      },
+    },
+  },
 });
 
 personSchema.set("toJSON", {
