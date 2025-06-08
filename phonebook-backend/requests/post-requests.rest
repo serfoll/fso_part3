@@ -6,3 +6,13 @@ Content-Type: application/json
   "name": "Hane Aond",
   "number": "031-322-3333"
 }
+
+###
+# update name or content
+PUT http://localhost:3001/api/persons/684588ee97e4b75d4c60a63f HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Han Hon",
+  "number": "031-323-2323"
+}
