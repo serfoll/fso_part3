@@ -3,8 +3,8 @@ POST http://localhost:3001/api/persons HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Dan",
-  "number": "031-322-3333"
+  "name": "Dae Do",
+  "number": "030-433-3398"
 }
 
 ###
@@ -13,6 +13,6 @@ PUT http://localhost:3001/api/persons/<id> HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Han Hon",
-  "number": "031-323-2323"
+  "name": "Hummie",
+  "number": "031d-323-2323"
 }
