@@ -4,8 +4,7 @@ const morgan = require('morgan')
 const config = require('./utils/config')
 const logger = require('./utils/logger')
 const middleware = require('./utils/middleware')
-const baseRouter = require('./controllers/base')
-const personsRouter = require('./controllers/persons')
+const controllers = require('./controllers')
 
 const app = express()
 
@@ -37,8 +36,8 @@ app.use(
 )
 
 //routers
-app.use('/', baseRouter)
-app.use('/api/persons', personsRouter)
+app.use('/', controllers.base)
+app.use('/api/persons', controllers.persons)
 
 // loggers
 app.use(middleware.unknownEndpoint)
