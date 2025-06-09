@@ -1,8 +1,8 @@
-const personsRouter = require('express').Router()
+const persons = require('express').Router()
 const Person = require('../models/person')
 
 // get persons
-personsRouter.get('/', (request, response, next) => {
+persons.get('/', (request, response, next) => {
   Person.find({})
     .then((result) => {
       response.json(result)
@@ -11,7 +11,7 @@ personsRouter.get('/', (request, response, next) => {
 })
 
 // get person by id
-personsRouter.get('/:id', (request, response, next) => {
+persons.get('/:id', (request, response, next) => {
   const { id } = request.params
 
   Person.findById(id)
@@ -26,7 +26,7 @@ personsRouter.get('/:id', (request, response, next) => {
 })
 
 // delete person with id
-personsRouter.delete('/:id', (request, response, next) => {
+persons.delete('/:id', (request, response, next) => {
   const { id } = request.params
 
   Person.findByIdAndDelete(id)
@@ -38,7 +38,7 @@ personsRouter.delete('/:id', (request, response, next) => {
 })
 
 // add new person
-personsRouter.post('/', (request, response, next) => {
+persons.post('/', (request, response, next) => {
   const { name, number } = request.body
 
   if (!name) {
@@ -75,7 +75,7 @@ personsRouter.post('/', (request, response, next) => {
 })
 
 // update person with id
-personsRouter.put('/:id', (request, response, next) => {
+persons.put('/:id', (request, response, next) => {
   const { id } = request.params
   const { name, number } = request.body
 
@@ -91,4 +91,4 @@ personsRouter.put('/:id', (request, response, next) => {
     .catch((error) => next(error))
 })
 
-module.exports = personsRouter
+module.exports = persons

@@ -1,13 +1,13 @@
-const baseRouter = require('express').Router()
+const base = require('express').Router()
 const Person = require('../models/person')
 
 // entrypoint
-baseRouter.get('/', (response) => {
+base.get('/', (response) => {
   response.send('<h1>Phonebook App</h1>')
 })
 
 // get /info
-baseRouter.get('/info', (request, response) => {
+base.get('/info', (request, response) => {
   const requestTime = new Date()
 
   Person.find({}).then((result) => {
@@ -20,4 +20,4 @@ baseRouter.get('/info', (request, response) => {
   })
 })
 
-module.exports = baseRouter
+module.exports = base
