@@ -1,17 +1,4 @@
-/** @format */
-
 const mongoose = require('mongoose')
-
-const url = process.env.MONGODB_URL
-
-mongoose.set('strictQuery', false)
-
-mongoose
-  .connect(url)
-  .then(() => {
-    console.log('connected to db')
-  })
-  .catch((error) => console.error('connection to db failed', error.message))
 
 const personSchema = new mongoose.Schema({
   name: {
